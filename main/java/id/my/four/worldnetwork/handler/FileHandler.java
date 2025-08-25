@@ -45,7 +45,6 @@ public final class FileHandler {
             }
         }
 
-
         gFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "group.yml");
 
         if (!gFile.exists()) {
