@@ -1,0 +1,6 @@
+default:
+  example:
+    location: none
+group-1:
+  example:
+    location: none

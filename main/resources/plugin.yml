@@ -1,0 +1,19 @@
+name: WorldNetwork
+version: '${project.version}'
+main: id.my.four.worldnetwork.WorldNetwork
+api-version: '1.21'
+load: STARTUP
+softdepend: [LuckPerms]
+authors: [antopHD]
+description: Perworld home, warp, spawn, and more
+website: https://worldnetwork.four.my.id
+commands:
+  worldnetwork:
+    aliases: [wn]
+    description: Worldnetwork Default Command
+    usage: /worldnetwork <command>
+  setspawn:
+    description: Set spawn to group world
+    usage: /setspawn
+    permission: worldnetwork.setspawn
+    permission-message: "&aYou dont have permission to do that"

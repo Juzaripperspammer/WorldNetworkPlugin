@@ -1,0 +1,7 @@
+spawn:
+  default:
+    location: None
+  group-1:
+    location: None
+hub:
+  location: None

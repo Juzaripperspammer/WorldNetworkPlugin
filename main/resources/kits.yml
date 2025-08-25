@@ -1,0 +1,20 @@
+## If you want to edit the delay can be second can be time ##
+## 1 minute = 60 second, 1 hour = 3600 second, 1 day =  86400 second, 30 day = 2592000 second ##
+## example for time 'delay: 1 month and 3 days and 40 minutes' or 'delay: 3 minutes and 20 seconds'for variable: month, day, minute, second ##
+## Remember to put s to time variable id the time is more than 1 example: 2 seconds or 1 minute
+default:
+  kit-1:
+    delay: 60
+    item:
+  kit-2:
+    delay: 60
+    permission: kit.kit-2
+    item:
+group-1:
+  kit-1:
+    delay: 60 seconds
+    item:
+  kit-2:
+    delay: 60 seconds
+    permission: kit.kit-2
+    item:

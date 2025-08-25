@@ -1,0 +1,60 @@
+## |-------------------| ##
+## |WorldNetworkScritpt| ##
+## |-------------------| ##
+## by antophd ##
+## This is config File for PerWorldScript need a help contact me dc: @antophd ##
+
+## |----------------| ##
+## |  Command List  | ##
+## |----------------| ##
+## NO TOUCH!!         ##
+
+command-list:
+- reload
+- version
+- help
+- list
+- remove
+- test
+- spawn
+- group
+
+## |---------------| ##
+## |  Server Name  | ##
+## |---------------| ##
+## Change this to the name of server that you want
+
+server-name:
+  default: default
+  group-1: group-1
+
+## |---------------| ##
+## |  Maintenance  | ##
+## |---------------| ##
+
+maintenance:
+  default: false
+  group-1: false
+
+## |------------------| ##
+## |  Tpall Cooldown  | ##
+## |------------------| ##
+
+tpall-cooldown: 10 second
+
+## |-------------| ##
+## |  Max Homes  | ##
+## |-------------| ##
+## eg. home:
+##       somerank: 10
+
+home:
+  default: 3
+
+## |-----------------------| ##
+## |  Max Enderchest Rows  | ##
+## |-----------------------| ##
+##
+
+enderchest:
+  default: 3
