@@ -38,8 +38,8 @@ public class WorldNetwork extends JavaPlugin {
 
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
 
-        FileHandler.createYml(this);
         FileHandler.reloadYml();
+        FileHandler.createYml(this);
 
     }
 
