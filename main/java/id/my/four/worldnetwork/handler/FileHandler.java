@@ -29,7 +29,7 @@ public final class FileHandler {
     File wFile;
 
     public void createYml(WorldNetwork plugin) {
-        cFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "config.yml");
+        cFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(),"config.yml");
 
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
@@ -69,7 +69,7 @@ public final class FileHandler {
             }
         }
 
-        sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
+        sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(),"spawn.yml");
         if (!sFile.exists()) {
             try {
                 Bukkit.getLogger().log(Level.INFO, "Creating spawn.yml");

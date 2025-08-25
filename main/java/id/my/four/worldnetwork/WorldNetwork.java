@@ -38,8 +38,8 @@ public class WorldNetwork extends JavaPlugin {
 
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
 
-        FileHandler.reloadYml();
         FileHandler.createYml(this);
+        FileHandler.reloadYml();
 
     }
 
@@ -51,6 +51,7 @@ public class WorldNetwork extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().log(Level.INFO, "Saving yml file");
+        FileHandler.reloadYml();
         FileHandler.saveYml();
         // Plugin shutdown logic
     }
