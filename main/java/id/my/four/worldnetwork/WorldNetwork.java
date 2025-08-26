@@ -13,6 +13,9 @@ import java.util.logging.Level;
 public class WorldNetwork extends JavaPlugin {
 
     public static WorldNetwork instance;
+    public static WorldNetwork getInstance() {
+        return instance;
+    }
     FileHandler FileHandler = new FileHandler();
 
     @Override
