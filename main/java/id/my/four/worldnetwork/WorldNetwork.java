@@ -5,7 +5,12 @@ import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.Bukkit;
 
 import java.util.logging.Level;
@@ -22,6 +27,7 @@ public class WorldNetwork extends JavaPlugin {
     public void onEnable() {
 
         instance = this;
+        BukkitScheduler scheduler = Bukkit.getScheduler();
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "|-------------------|");
         Bukkit.getConsoleSender().sendMessage( ChatColor.GRAY + "|                   |");
@@ -39,16 +45,20 @@ public class WorldNetwork extends JavaPlugin {
             getLogger().log(Level.INFO, "Disableing" + getDescription().getName());
         }
 
-        this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
-
         FileHandler.createYml(this);
         FileHandler.reloadYml();
 
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                CommandRegisterer();
+            }
+        }.runTaskTimer(this, 0, 10);
     }
 
     public void reload() {
-        getPluginLoader().disablePlugin(this);
-        getPluginLoader().enablePlugin(this);
+        FileHandler.reloadYml();
+        FileHandler.saveYml();
     }
 
     @Override
@@ -58,6 +68,11 @@ public class WorldNetwork extends JavaPlugin {
         FileHandler.saveYml();
         // Plugin shutdown logic
     }
+
+    public void CommandRegisterer() {
+        this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
+    }
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
