@@ -17,3 +17,6 @@ commands:
     usage: /setspawn
     permission: worldnetwork.setspawn
     permission-message: "&aYou dont have permission to do that"
+  spawn:
+    description: Teleport to spawn
+    usage: /spawn

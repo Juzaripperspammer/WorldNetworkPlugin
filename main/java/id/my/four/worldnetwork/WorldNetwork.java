@@ -1,6 +1,7 @@
 package id.my.four.worldnetwork;
 
 import id.my.four.worldnetwork.command.SetSpawnCommand;
+import id.my.four.worldnetwork.command.SpawnCommand;
 import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -71,6 +72,7 @@ public class WorldNetwork extends JavaPlugin {
 
     public void CommandRegisterer() {
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
+        this.getCommand("spawn").setExecutor(new SpawnCommand());
     }
 
 
@@ -79,9 +81,9 @@ public class WorldNetwork extends JavaPlugin {
 
         if (cmd.getName().equalsIgnoreCase("worldnetwork"))
         if (args.length == 0) {
-            sender.sendMessage(ChatColor.GREEN + "Usage: /worldnetwork <command>");
+            sender.sendMessage(ChatColor.GREEN + "Unknown command use /worldnetwork help");
         } else if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-            sender.sendMessage(ChatColor.GREEN + "Realoading world network...");
+            sender.sendMessage(ChatColor.GREEN + "Reloading world network...");
             reload();
             sender.sendMessage(ChatColor.GREEN + "world network reloaded!");
         } else if (args.length == 1 && args[0].equalsIgnoreCase("version")) {

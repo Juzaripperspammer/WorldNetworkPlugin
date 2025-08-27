@@ -19,8 +19,6 @@ import java.util.logging.Level;
 
 public final class SetSpawnCommand implements CommandExecutor {
 
-    GroupHandler groupHandler = new GroupHandler();
-
     FileHandler Filehandler = new FileHandler();
     File sFile = new File(WorldNetwork.getInstance().getDataFolder(), "spawn.yml");
     YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
@@ -35,12 +33,14 @@ public final class SetSpawnCommand implements CommandExecutor {
         }
         if (sender.hasPermission("worldnetwork.setspawn")){
             Player player = (Player) sender;
-            World world = player.getWorld();
+            String world = player.getWorld().getName();
             Location loc = player.getLocation();
 
             try {
+                GroupHandler.GetGroup(player);
                 spawn.set("default." + world + ".location", loc);
                 spawn.save(sFile);
+                sender.sendMessage(ChatColor.GREEN + "Spawn set for world: " + player.getWorld().getName());
             } catch (Exception e) {
                 Bukkit.getLogger().log(Level.SEVERE, "Failed to save spawn location", e);;
             }

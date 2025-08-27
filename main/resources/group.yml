@@ -1,6 +1,7 @@
-default:
-- world
-- world_nether
-- world_the_end
-group-1:
-- example
+group:
+  default:
+  - world
+  - world_nether
+  - world_the_end
+  group-1:
+  - example
