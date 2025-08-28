@@ -27,7 +27,6 @@ public class WorldNetwork extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        instance = this;
         BukkitScheduler scheduler = Bukkit.getScheduler();
 
         Bukkit.getConsoleSender().sendMessage(ChatColor.GRAY + "|-------------------|");
@@ -58,6 +57,7 @@ public class WorldNetwork extends JavaPlugin {
     }
 
     public void reload() {
+        FileHandler.createYml(this);
         FileHandler.reloadYml();
         FileHandler.saveYml();
     }

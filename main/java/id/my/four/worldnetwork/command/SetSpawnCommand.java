@@ -16,11 +16,13 @@ import org.bukkit.World;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.logging.Level;
+import java.util.spi.AbstractResourceBundleProvider;
 
 public final class SetSpawnCommand implements CommandExecutor {
 
     FileHandler Filehandler = new FileHandler();
-    File sFile = new File(WorldNetwork.getInstance().getDataFolder(), "spawn.yml");
+
+    File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
     YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
 
     public SetSpawnCommand() {
@@ -37,10 +39,15 @@ public final class SetSpawnCommand implements CommandExecutor {
             Location loc = player.getLocation();
 
             try {
-                GroupHandler.GetGroup(player);
-                spawn.set("default." + world + ".location", loc);
+                String g;
+                g = GroupHandler.GetGroup(world);
+                if (g == null) {
+                    player.sendMessage(ChatColor.RED + "This world is not in any group on group.yml, maybe a typo?");
+                    return false;
+                }
+                spawn.set(g + ".location", loc);
                 spawn.save(sFile);
-                sender.sendMessage(ChatColor.GREEN + "Spawn set for world: " + player.getWorld().getName());
+                sender.sendMessage(ChatColor.GREEN + "Spawn set for group: " + g);
             } catch (Exception e) {
                 Bukkit.getLogger().log(Level.SEVERE, "Failed to save spawn location", e);;
             }

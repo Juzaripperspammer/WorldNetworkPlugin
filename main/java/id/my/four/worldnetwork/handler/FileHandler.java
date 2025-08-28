@@ -29,7 +29,7 @@ public final class FileHandler {
     File wFile;
 
     public void createYml(WorldNetwork plugin) {
-        cFile = new File(WorldNetwork.getInstance().getDataFolder(),"config.yml");
+        cFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(),"config.yml");
 
         if (!plugin.getDataFolder().exists()) {
             plugin.getDataFolder().mkdir();
@@ -45,7 +45,7 @@ public final class FileHandler {
             }
         }
 
-        gFile = new File(WorldNetwork.getInstance().getDataFolder(), "group.yml");
+        gFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "group.yml");
 
         if (!gFile.exists()) {
             try {
@@ -58,7 +58,7 @@ public final class FileHandler {
         }
 
 
-        kFile = new File(WorldNetwork.getInstance().getDataFolder(), "kits.yml");
+        kFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "kits.yml");
         if (!kFile.exists()) {
             try {
                 Bukkit.getLogger().log(Level.INFO, "Creating kits.yml");
@@ -69,7 +69,7 @@ public final class FileHandler {
             }
         }
 
-        sFile = new File(WorldNetwork.getInstance().getDataFolder(),"spawn.yml");
+        sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(),"spawn.yml");
         if (!sFile.exists()) {
             try {
                 Bukkit.getLogger().log(Level.INFO, "Creating spawn.yml");
@@ -80,7 +80,7 @@ public final class FileHandler {
             }
         }
 
-        wFile = new File(WorldNetwork.getInstance().getDataFolder(), "warp.yml");
+        wFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "warp.yml");
         if (!wFile.exists()) {
             try {
                 Bukkit.getLogger().log(Level.INFO, "Creating warp.yml");
