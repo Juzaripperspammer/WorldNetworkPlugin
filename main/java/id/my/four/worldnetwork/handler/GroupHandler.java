@@ -1,5 +1,6 @@
 package id.my.four.worldnetwork.handler;
 
+import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -13,8 +14,7 @@ import java.util.List;
 
 public class GroupHandler implements Listener {
 
-    static File groupf = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "group.yml");
-    static YamlConfiguration gr = YamlConfiguration.loadConfiguration(groupf);
+    static YamlConfiguration gr = FileHandler.get("group");
 
     public static String GetGroup(String world) {
         if (groupf.exists()) {
