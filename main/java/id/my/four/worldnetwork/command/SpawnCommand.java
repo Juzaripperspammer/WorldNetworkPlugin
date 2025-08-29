@@ -2,6 +2,7 @@ package id.my.four.worldnetwork.command;
 
 import id.my.four.worldnetwork.WorldNetwork;
 import id.my.four.worldnetwork.handler.GroupHandler;
+import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -30,8 +31,7 @@ public final class SpawnCommand implements CommandExecutor {
                 try {
                     Player player = (Player) sender;
                     String world = player.getWorld().getName();
-                    File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
-                    YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
+                    YamlConfiguration spawn = Filehandler.get("spawn");
                     String g = GroupHandler.GetGroup(world);
                     if (g == null) {
                         player.sendMessage(ChatColor.RED + "This world is not in any group on group.yml, maybe a typo?");

@@ -20,10 +20,9 @@ import java.util.spi.AbstractResourceBundleProvider;
 
 public final class SetSpawnCommand implements CommandExecutor {
 
-    FileHandler Filehandler = new FileHandler();
+    FileHandler Filehandler = new FileHandler()
 
-    File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
-    YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
+    YamlConfiguration spawn = FileHandler.get("spawn");
 
     public SetSpawnCommand() {
     }
