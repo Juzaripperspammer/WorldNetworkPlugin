@@ -1,28 +1,20 @@
 package id.my.four.worldnetwork.command;
 
-import id.my.four.worldnetwork.WorldNetwork;
 import id.my.four.worldnetwork.handler.GroupHandler;
-import id.my.four.worldnetwork.handler.FileHandler;
-import com.sun.tools.javac.Main;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.World;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.logging.Level;
-import java.util.spi.AbstractResourceBundleProvider;
 
 public final class SetSpawnCommand implements CommandExecutor {
 
-    FileHandler Filehandler = new FileHandler()
-
-    YamlConfiguration spawn = FileHandler.get("spawn");
+    File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
+    YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
 
     public SetSpawnCommand() {
     }
@@ -45,12 +37,14 @@ public final class SetSpawnCommand implements CommandExecutor {
                     return false;
                 }
                 spawn.set(g + ".location", loc);
-                spawn.save(sFile);
                 sender.sendMessage(ChatColor.GREEN + "Spawn set for group: " + g);
+                spawn.save(sFile);
             } catch (Exception e) {
                 Bukkit.getLogger().log(Level.SEVERE, "Failed to save spawn location", e);;
             }
 
+        }else {
+            return false;
         }
         return true;
     }

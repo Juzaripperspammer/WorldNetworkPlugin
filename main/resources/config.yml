@@ -4,29 +4,14 @@
 ## by antophd ##
 ## This is config File for PerWorldScript need a help contact me dc: @antophd ##
 
-## |----------------| ##
-## |  Command List  | ##
-## |----------------| ##
-## NO TOUCH!!         ##
-
-command-list:
-- reload
-- version
-- help
-- list
-- remove
-- test
-- spawn
-- group
-
 ## |---------------| ##
 ## |  Server Name  | ##
 ## |---------------| ##
 ## Change this to the name of server that you want
 
 server-name:
-  default: default
-  group-1: group-1
+  default: "default"
+  group-1: "group-1"
 
 ## |---------------| ##
 ## |  Maintenance  | ##

@@ -12,17 +12,15 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupHandler implements Listener {
+public class GroupHandler {
 
     static YamlConfiguration gr = FileHandler.get("group");
 
     public static String GetGroup(String world) {
-        if (groupf.exists()) {
-            for (String g : gr.getConfigurationSection("group").getKeys(false)) {
-                for (String gp : gr.getStringList("group." + g)) {
-                    if (gp.equalsIgnoreCase(world)) {
-                        return g;
-                    }
+        for (String g : gr.getConfigurationSection("group").getKeys(false)) {
+            for (String gp : gr.getStringList("group." + g)) {
+                if (gp.equals(world)) {
+                    return g;
                 }
             }
         }

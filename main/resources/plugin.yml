@@ -19,4 +19,10 @@ commands:
     permission-message: "&aYou dont have permission to do that"
   spawn:
     description: Teleport to spawn
-    usage: /spawn
+    usage: /spawn or /spawn <player>
+  server:
+    description: Go to another server in network
+    usage: /server <server> <player>
+  maintenance:
+    decription: make server maintenance or unmaintenance
+    usage: /maintenance <on/off> <server>

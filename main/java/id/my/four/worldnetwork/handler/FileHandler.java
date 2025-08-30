@@ -121,9 +121,9 @@ public final class FileHandler {
     }
 
     public static YamlConfiguration get(String file) {
-        File f = new File(Bukkit.getServer.getPluginManager.getPlugin("WorldNetwork").getDataFolder, file + ".yml");
-        YamlConfiguration file = YamlConfiguration.loadConfiguration(f);
-        return file;
+        File f = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), file + ".yml");
+        YamlConfiguration fl = YamlConfiguration.loadConfiguration(f);
+        return fl;
     }
 
 }

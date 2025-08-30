@@ -1,12 +1,10 @@
 package id.my.four.worldnetwork.command;
 
-import id.my.four.worldnetwork.WorldNetwork;
 import id.my.four.worldnetwork.handler.GroupHandler;
 import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,21 +15,21 @@ import java.io.*;
 
 public final class SpawnCommand implements CommandExecutor {
 
+    FileHandler fileHandler = new FileHandler();
 
     public SpawnCommand() {
 
     }
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            if (args.length == 0) {
+        if (args.length == 0) {
+            if (!(sender instanceof Player)) {
                 sender.sendMessage("Only player can use /spawn use /spawn <player> instead");
-            }
-        } else if (sender instanceof Player) {
-            if (args.length == 0) {
-                try {
+            }   else if (sender instanceof Player) {
+                {
                     Player player = (Player) sender;
                     String world = player.getWorld().getName();
-                    YamlConfiguration spawn = Filehandler.get("spawn");
+                    File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
+                    YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
                     String g = GroupHandler.GetGroup(world);
                     if (g == null) {
                         player.sendMessage(ChatColor.RED + "This world is not in any group on group.yml, maybe a typo?");
@@ -41,13 +39,30 @@ public final class SpawnCommand implements CommandExecutor {
 
                     if (!(loc == null)) {
                         player.teleport(loc);
-                        spawn.save(sFile);
+
                     } else {
                         sender.sendMessage(ChatColor.RED + "Spawn didn't set");
                     }
+                }
+            }
+        }else if (args.length == 1) {
+            if (sender.hasPermission("worldnetwork.spawnplayer")) {
+                Player player = Bukkit.getPlayer(args[0]);
+                String world = player.getWorld().getName();
+                File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
+                YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);
+                String g = GroupHandler.GetGroup(world);
+                if (g == null) {
+                    sender.sendMessage(ChatColor.RED + "That player world is not in any group on group.yml, maybe a typo?");
+                    return true;
+                }
+                Location loc = (Location) spawn.get(g + ".location");
 
-                } catch (IOException e) {
-                    sender.sendMessage(ChatColor.RED + "Failed to teleport to spawn" + e);
+                if (!(loc == null)) {
+                    player.teleport(loc);
+
+                } else {
+                    sender.sendMessage(ChatColor.RED + "Spawn didn't set in that player group");
                 }
             }
         }

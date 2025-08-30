@@ -1,5 +1,7 @@
 package id.my.four.worldnetwork;
 
+import id.my.four.worldnetwork.command.MaintenanceCommand;
+import id.my.four.worldnetwork.command.ServerCommand;
 import id.my.four.worldnetwork.command.SetSpawnCommand;
 import id.my.four.worldnetwork.command.SpawnCommand;
 import id.my.four.worldnetwork.handler.FileHandler;
@@ -47,6 +49,9 @@ public class WorldNetwork extends JavaPlugin {
 
         FileHandler.createYml(this);
         FileHandler.reloadYml();
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "------------------------");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "You can ignore the error above if the plugin work perfectly");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "------------------------");
 
         new BukkitRunnable() {
             @Override
@@ -73,6 +78,8 @@ public class WorldNetwork extends JavaPlugin {
     public void CommandRegisterer() {
         this.getCommand("setspawn").setExecutor(new SetSpawnCommand());
         this.getCommand("spawn").setExecutor(new SpawnCommand());
+        this.getCommand("server").setExecutor(new ServerCommand());
+        this.getCommand("maintenance").setExecutor(new MaintenanceCommand());
     }
 
 
