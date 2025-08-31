@@ -1,7 +1,7 @@
 package id.my.four.worldnetwork;
 
+import id.my.four.worldnetwork.handler.*;
 import id.my.four.worldnetwork.command.*;
-import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -44,16 +44,13 @@ public final class WorldNetwork extends JavaPlugin {
             getLogger().log(Level.INFO, "Disableing" + getDescription().getName());
         }
 
-        FileHandler.createYml(this);
-        FileHandler.reloadYml();
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "------------------------");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "You can ignore the error above if the plugin work perfectly");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "------------------------");
+        Bukkit.getServer().getPluginManager().registerEvents(new EventHandler(), this);
 
         new BukkitRunnable() {
             @Override
             public void run() {
                 CommandRegisterer();
+                FileRegisterer();
             }
         }.runTaskTimer(this, 0, 10);
     }
@@ -62,6 +59,11 @@ public final class WorldNetwork extends JavaPlugin {
         FileHandler.createYml(this);
         FileHandler.reloadYml();
         FileHandler.saveYml();
+    }
+
+    public void FileRegisterer() {
+        FileHandler.createYml(this);
+        FileHandler.reloadYml();
     }
 
     @Override
