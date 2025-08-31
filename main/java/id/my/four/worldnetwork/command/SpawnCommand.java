@@ -47,7 +47,18 @@ public final class SpawnCommand implements CommandExecutor {
             }
         }else if (args.length == 1) {
             if (sender.hasPermission("worldnetwork.spawnplayer")) {
-                Player player = Bukkit.getPlayer(args[0]);
+                Player player = null;
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    Player ps = (Player) p;
+                    String np = ps.getName();
+                    if (np.equals(args[0])) {
+                        player = ps;
+                    }
+                }
+                if (player == null) {
+                    sender.sendMessage(ChatColor.RED + "That player is not online or never join");
+                    return true;
+                }
                 String world = player.getWorld().getName();
                 File sFile = new File(Bukkit.getServer().getPluginManager().getPlugin("WorldNetwork").getDataFolder(), "spawn.yml");
                 YamlConfiguration spawn = YamlConfiguration.loadConfiguration(sFile);

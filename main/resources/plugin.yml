@@ -24,5 +24,24 @@ commands:
     description: Go to another server in network
     usage: /server <server> <player>
   maintenance:
-    decription: make server maintenance or unmaintenance
-    usage: /maintenance <on/off> <server>
+    description: make server maintenance or unmaintenance
+    usage: /maintenance <on/off> <server>\
+    permission: worldnetwork.maintenance
+  sethub:
+    description: set hub for the server
+    usage: /sethub
+    permission: worldnetwork.sethub
+  hub:
+    description: Teleport to server hub
+    usage: /hub
+  setwarp:
+    description: Set warp for server you're in
+    usage: /setwarp <warp name>
+    permission: worldnetwork.setwarp
+    permission-message: "&aYou dont have permission to do that"
+  warp:
+    description: Teleport to warp
+    usage: /warp <warp name>
+  delwarp:
+    description: delete warp permanenly
+    usage: /delwarp <warp name> <group>(optional)

@@ -1,9 +1,6 @@
 package id.my.four.worldnetwork;
 
-import id.my.four.worldnetwork.command.MaintenanceCommand;
-import id.my.four.worldnetwork.command.ServerCommand;
-import id.my.four.worldnetwork.command.SetSpawnCommand;
-import id.my.four.worldnetwork.command.SpawnCommand;
+import id.my.four.worldnetwork.command.*;
 import id.my.four.worldnetwork.handler.FileHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,7 +15,7 @@ import org.bukkit.Bukkit;
 
 import java.util.logging.Level;
 
-public class WorldNetwork extends JavaPlugin {
+public final class WorldNetwork extends JavaPlugin {
 
     public static WorldNetwork instance;
     public static WorldNetwork getInstance() {
@@ -80,35 +77,41 @@ public class WorldNetwork extends JavaPlugin {
         this.getCommand("spawn").setExecutor(new SpawnCommand());
         this.getCommand("server").setExecutor(new ServerCommand());
         this.getCommand("maintenance").setExecutor(new MaintenanceCommand());
+        this.getCommand("sethub").setExecutor(new SethubCommand());
+        this.getCommand("hub").setExecutor(new HubCommand());
+        this.getCommand("setwarp").setExecutor(new SetwarpCommand());
+        this.getCommand("warp").setExecutor(new WarpCommand());
+        this.getCommand("delwarp").setExecutor(new DelwarpCommand());
     }
 
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
-        if (cmd.getName().equalsIgnoreCase("worldnetwork"))
-        if (args.length == 0) {
-            sender.sendMessage(ChatColor.GREEN + "Unknown command use /worldnetwork help");
-        } else if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-            sender.sendMessage(ChatColor.GREEN + "Reloading world network...");
-            reload();
-            sender.sendMessage(ChatColor.GREEN + "world network reloaded!");
-        } else if (args.length == 1 && args[0].equalsIgnoreCase("version")) {
-            sender.sendMessage(ChatColor.GREEN + "|--World Network--|");
-            sender.sendMessage(ChatColor.GREEN + " version: " + getDescription().getVersion());
-            sender.sendMessage(ChatColor.GREEN + " author: " + getDescription().getAuthors());
-        } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
-            if (sender.hasPermission("worldnetwork.command")) {
-                sender.sendMessage(ChatColor.GREEN + "|---------- WorldNetwork ----------|");
-                sender.sendMessage(ChatColor.GRAY + "/wn reload   - reload plugins");
-                sender.sendMessage(ChatColor.GRAY + "/wn version  - WorldNetwork Version");
-                sender.sendMessage(ChatColor.GRAY + "/wn help     - open help");
-                sender.sendMessage(ChatColor.GRAY + "/wn spawn    - get spawn information");
-                sender.sendMessage(ChatColor.GRAY + "/wn group    - add or remove group");
-            } else {
-                sender.sendMessage(ChatColor.GREEN + "|---------- WorldNetwork ----------|");
-                sender.sendMessage(ChatColor.GRAY + "/wn help     - open help");
-                sender.sendMessage(ChatColor.GRAY + "/wn version  - WorldNetwork Version");
+        if (cmd.getName().equalsIgnoreCase("worldnetwork")) {
+            if (args.length == 0) {
+                sender.sendMessage(ChatColor.GREEN + "Unknown command use /worldnetwork help");
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+                sender.sendMessage(ChatColor.GREEN + "Reloading world network...");
+                reload();
+                sender.sendMessage(ChatColor.GREEN + "world network reloaded!");
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("version")) {
+                sender.sendMessage(ChatColor.GREEN + "|--World Network--|");
+                sender.sendMessage(ChatColor.GREEN + " version: " + getDescription().getVersion());
+                sender.sendMessage(ChatColor.GREEN + " author: " + getDescription().getAuthors());
+            } else if (args.length == 1 && args[0].equalsIgnoreCase("help")) {
+                if (sender.hasPermission("worldnetwork.command")) {
+                    sender.sendMessage(ChatColor.GREEN + "|---------- WorldNetwork ----------|");
+                    sender.sendMessage(ChatColor.GRAY + "/wn reload   - reload plugins");
+                    sender.sendMessage(ChatColor.GRAY + "/wn version  - WorldNetwork Version");
+                    sender.sendMessage(ChatColor.GRAY + "/wn help     - open help");
+                    sender.sendMessage(ChatColor.GRAY + "/wn spawn    - get spawn information");
+                    sender.sendMessage(ChatColor.GRAY + "/wn group    - add or remove group");
+                } else {
+                    sender.sendMessage(ChatColor.GREEN + "|---------- WorldNetwork ----------|");
+                    sender.sendMessage(ChatColor.GRAY + "/wn help     - open help");
+                    sender.sendMessage(ChatColor.GRAY + "/wn version  - WorldNetwork Version");
+                }
             }
         }
         return true;
